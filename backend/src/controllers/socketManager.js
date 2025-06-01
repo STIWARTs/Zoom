@@ -1,31 +1,30 @@
 import { Server } from "socket.io"
 
+let connections = {} // This will hold the connections for each room
+let messages = {}    // This will store the messages for each room
+let timeOnline = {}  // This will store the time each user has been online
 
-let connections = {}
-let messages = {}
-let timeOnline = {}
-
-export const connectToSocket = (server) => {
-    const io = new Server(server, {
-        cors: {
+export const connectToSocket = (server) => { // Function to connect socket.io to the server
+    const io = new Server(server, { // Create a new instance of socket.io
+        cors: { // Configure CORS for socket.io -- this is important for allowing cross-origin requests 
             origin: "*",
-            methods: ["GET", "POST"],
+            methods: ["GET", "POST"], 
             allowedHeaders: ["*"],
             credentials: true
         }
     });
 
 
-    io.on("connection", (socket) => {
+    io.on("connection", (socket) => { // Listen for new connections - when a new user connects to the server
 
         console.log("SOMETHING CONNECTED")
 
-        socket.on("join-call", (path) => {
+        socket.on("join-call", (path) => { // Listen for the "join-call" event - when a user joins a call
 
             if (connections[path] === undefined) {
                 connections[path] = []
             }
-            connections[path].push(socket.id)
+            connections[path].push(socket.id) 
 
             timeOnline[socket.id] = new Date();
 
@@ -33,27 +32,29 @@ export const connectToSocket = (server) => {
             //     io.to(elem)
             // })
 
-            for (let a = 0; a < connections[path].length; a++) {
-                io.to(connections[path][a]).emit("user-joined", socket.id, connections[path])
+            //or
+
+            for (let a = 0; a < connections[path].length; a++) { 
+                io.to(connections[path][a]).emit("user-joined", socket.id, connections[path]) // Notify all users in the room that a new user has joined
             }
 
             if (messages[path] !== undefined) {
                 for (let a = 0; a < messages[path].length; ++a) {
-                    io.to(socket.id).emit("chat-message", messages[path][a]['data'],
-                        messages[path][a]['sender'], messages[path][a]['socket-id-sender'])
+                    io.to(socket.id).emit("chat-message", messages[path][a]['data'], // Send the chat messages to the new user
+                        messages[path][a]['sender'], messages[path][a]['socket-id-sender']) 
                 }
             }
 
         })
 
-        socket.on("signal", (toId, message) => {
+        socket.on("signal", (toId, message) => { // Listen for the "signal" event - when a user sends a signal to another user
             io.to(toId).emit("signal", socket.id, message);
         })
 
-        socket.on("chat-message", (data, sender) => {
+        socket.on("chat-message", (data, sender) => { // Listen for the "chat-message" event - when a user sends a chat message
 
-            const [matchingRoom, found] = Object.entries(connections)
-                .reduce(([room, isFound], [roomKey, roomValue]) => {
+            const [matchingRoom, found] = Object.entries(connections) 
+                .reduce(([room, isFound], [roomKey, roomValue]) => { 
 
 
                     if (!isFound && roomValue.includes(socket.id)) {
@@ -79,13 +80,13 @@ export const connectToSocket = (server) => {
 
         })
 
-        socket.on("disconnect", () => {
+        socket.on("disconnect", () => { // Listen for the "disconnect" event - when a user disconnects from the server
 
             var diffTime = Math.abs(timeOnline[socket.id] - new Date())
 
             var key
 
-            for (const [k, v] of JSON.parse(JSON.stringify(Object.entries(connections)))) {
+            for (const [k, v] of JSON.parse(JSON.stringify(Object.entries(connections)))) { // k-room, v-persons
 
                 for (let a = 0; a < v.length; ++a) {
                     if (v[a] === socket.id) {
