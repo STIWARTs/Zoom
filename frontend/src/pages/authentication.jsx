@@ -1,3 +1,5 @@
+// copied from material-ui documentation 
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -24,21 +26,21 @@ const defaultTheme = createTheme();
 export default function Authentication() {
 
     
-
+    //
     const [username, setUsername] = React.useState();
     const [password, setPassword] = React.useState();
     const [name, setName] = React.useState();
     const [error, setError] = React.useState();
     const [message, setMessage] = React.useState();
 
-
     const [formState, setFormState] = React.useState(0);
 
     const [open, setOpen] = React.useState(false)
 
 
-    const { handleRegister, handleLogin } = React.useContext(AuthContext);
+    const { handleRegister, handleLogin } = React.useContext(AuthContext); //  
 
+    //
     let handleAuth = async () => {
         try {
             if (formState === 0) {
@@ -98,7 +100,7 @@ export default function Authentication() {
                             <LockOutlinedIcon />
                         </Avatar>
 
-
+                        {/*  */}
                         <div>
                             <Button variant={formState === 0 ? "contained" : ""} onClick={() => { setFormState(0) }}>
                                 Sign In
