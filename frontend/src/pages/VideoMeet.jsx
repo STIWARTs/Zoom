@@ -13,13 +13,13 @@ import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
 import server from '../environment';
 
-const server_url = server;
+const server_url = server; //  
 
 var connections = {};
 
 const peerConfigConnections = {
     "iceServers": [
-        { "urls": "stun:stun.l.google.com:19302" }
+        { "urls": "stun:stun.l.google.com:19302" } //STUN servers are lightweight servers running on the public internet which return the IP address of the re uester's device.
     ]
 }
 
