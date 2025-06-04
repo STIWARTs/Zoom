@@ -19,7 +19,7 @@ var connections = {};
 
 const peerConfigConnections = {
     "iceServers": [
-        { "urls": "stun:stun.l.google.com:19302" } //STUN servers are lightweight servers running on the public internet which return the IP address of the re uester's device.
+        { "urls": "stun:stun.l.google.com:19302" } //STUN servers are lightweight servers running on the public internet which return the IP address of the requester's device.
     ]
 }
 
@@ -54,11 +54,11 @@ export default function VideoMeetComponent() {
 
     let [username, setUsername] = useState("");
 
-    const videoRef = useRef([])
+    const videoRef = useRef([]) //
 
     let [videos, setVideos] = useState([])
 
-    // TODO
+    // TODO --- WebRTC works on chromium based browsers only, so we can check for that and then allow the user to use the app
     // if(isChrome() === false) {
 
 
