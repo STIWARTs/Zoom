@@ -1,4 +1,4 @@
-# Apna Video Call (Zoom Clone)
+# Zoom Clone
 
 A full-stack video calling application with chat functionality, built with Node.js (Express, Socket.io) for the backend and React (Material-UI) for the frontend.
 
