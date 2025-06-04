@@ -127,17 +127,12 @@ export default function VideoMeetComponent() {
             console.log("SET STATE HAS ", video, audio);
 
         }
-
-
     }, [video, audio])
     let getMedia = () => {
         setVideo(videoAvailable);
         setAudio(audioAvailable);
         connectToSocketServer();
-
     }
-
-
 
 
     let getUserMediaSuccess = (stream) => {
@@ -205,9 +200,6 @@ export default function VideoMeetComponent() {
     }
 
 
-
-
-
     let getDislayMediaSuccess = (stream) => {
         console.log("HERE")
         try {
@@ -269,8 +261,6 @@ export default function VideoMeetComponent() {
             }
         }
     }
-
-
 
 
     let connectToSocketServer = () => {
