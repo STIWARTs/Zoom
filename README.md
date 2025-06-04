@@ -7,63 +7,67 @@ A full-stack video calling application with chat functionality, built with Node.
 ## Project Structure
 
 ```
-backend/
-  .gitignore
-  package.json
-  package-lock.json
-  src/
-    app.js                # Main Express app entry point
-    controllers/          # Route and socket controllers
-      socketManager.js
-      user.controller.js
-    models/               # Mongoose models
-      meeting.model.js
-      user.model.js
-    routes/               # Express route definitions
-      users.routes.js
-
-frontend/
-  .gitignore
-  package.json
-  package-lock.json
-  public/
-    background.png
-    favicon.ico
-    index.html
-    logo192.png
-    logo3.png
-    logo512.png
-    manifest.json
-    mobile.png
-    robots.txt
-  src/
-    App.js                # Main React app entry point
-    App.css               # Global styles
-    App.test.js           # App tests
-    environment.js        # API endpoint config
-    index.js              # ReactDOM render
-    index.css             # Global CSS
-    logo.svg
-    reportWebVitals.js
-    setupTests.js
-    contexts/             # React context providers
-      AuthContext.jsx
-      backend.code-workspace
-    pages/                # Main page components
-      authentication.jsx
-      history.jsx
-      home.jsx
-      landing.jsx
-      VideoMeet.jsx
-    styles/               # CSS modules and style files
-      videoComponent.module.css
-    utils/                # Utility functions/HOCs
-      withAuth.jsx
+ZOOM GIT/
+│
+├── backend/
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   └── src/
+│       ├── app.js                  # Main Express app entry point
+│       ├── controllers/
+│       │   ├── socketManager.js    # Socket.io logic
+│       │   └── user.controller.js  # User-related logic
+│       ├── models/
+│       │   ├── meeting.model.js    # Meeting schema
+│       │   └── user.model.js       # User schema
+│       └── routes/
+│           └── users.routes.js     # User routes
+│
+├── frontend/
+│   ├── .gitignore
+│   ├── package.json
+│   ├── public/
+│   │   ├── background.png
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo3.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── mobile.png
+│   │   └── robots.txt
+│   └── src/
+│       ├── App.js                  # Main React app entry point
+│       ├── App.css                 # Global styles
+│       ├── App.test.js             # App tests
+│       ├── environment.js          # API endpoint config
+│       ├── index.js                # ReactDOM render
+│       ├── index.css               # Global CSS
+│       ├── logo.svg
+│       ├── reportWebVitals.js
+│       ├── setupTests.js
+│       ├── contexts/
+│       │   ├── AuthContext.jsx     # Auth context provider
+│       │   └── backend.code-workspace
+│       ├── pages/
+│       │   ├── authentication.jsx  # Auth page
+│       │   ├── history.jsx         # Meeting history page
+│       │   ├── home.jsx            # Home page
+│       │   ├── landing.jsx         # Landing page
+│       │   └── VideoMeet.jsx       # Video meeting page
+│       ├── styles/
+│       │   └── videoComponent.module.css
+│       └── utils/
+│           └── withAuth.jsx        # Auth HOC
+│
+└── README.md
 ```
 
 ---
 
 ## Prerequisites
+
 - Node.js (v16 or above recommended)
 - npm (comes with Node.js)
 
@@ -110,6 +114,7 @@ frontend/
 ---
 
 ## Usage
+
 - Register or login to your account.
 - Join as a guest or create/join a meeting using a meeting code.
 - Use the video call and chat features.
@@ -118,10 +123,12 @@ frontend/
 ---
 
 ## Notes
+
 - Make sure both backend and frontend servers are running simultaneously for full functionality.
 - Update the backend API URL in `frontend/src/environment.js` if your backend runs on a different port or host.
 
 ---
 
 ## License
+
 This project is for educational purposes.
